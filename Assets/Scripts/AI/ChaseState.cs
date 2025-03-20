@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class ChaseState : State<EnemyController>
 {
+    [SerializeField] float distance= 3f;
+
+    EnemyController Enemy;
 
     public override void Enter(EnemyController owner)
     {
 
-        Debug.Log("Enter ChaseState enemy");
+        Enemy = owner;
 
-
+        Enemy.NavAgent.stoppingDistance = distance;
     }
 
     public override void Execute()
     {
-
-        Debug.Log("Execute ChaseState enemy");
+        Enemy.NavAgent.SetDestination(Enemy.Target.transform.position);
+        Enemy.animator.SetFloat("moveAmount",Enemy.NavAgent.velocity.magnitude/Enemy.NavAgent.speed);
     }
 
     public override void Exit()
