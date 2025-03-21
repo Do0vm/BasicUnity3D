@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Att2
   m_EditorClassIdentifier: 
   <AnimName>k__BackingField: Att2
-  <ImpactStartTime>k__BackingField: 0.2
-  <ImpactEndTime>k__BackingField: 0.36
+  <ImpactStartTime>k__BackingField: 0.05
+  <ImpactEndTime>k__BackingField: 0.7

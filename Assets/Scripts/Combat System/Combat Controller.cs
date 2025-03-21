@@ -14,7 +14,8 @@ public class CombatController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Attack"))
+        if(Input.GetButtonDown("Attack") ||(Input.GetKeyDown("joystick button 1"))
+)
         {
             meleeFighter.TryToAttack();
 

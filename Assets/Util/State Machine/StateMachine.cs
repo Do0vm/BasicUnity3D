@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StateMachine<T>
 {
+
+    //StateMachine<EnemyController> enemyStateMachine = new StateMachine<EnemyController>(new EnemyController());
+
     public State<T> CurrentState { get; private set; }
     T _owner;
     public StateMachine(T owner)
@@ -31,7 +34,6 @@ public class StateMachine<T>
     }
 
 
-    StateMachine<EnemyController> enemyStateMachine = new StateMachine<EnemyController>(new EnemyController());
 }
 
 

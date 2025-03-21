@@ -157,6 +157,9 @@ public class MeleeFighter : MonoBehaviour
 
         InAction = false;
 
+        Destroy(gameObject);
+
+
     }
 
 }

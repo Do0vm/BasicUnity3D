@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/Debig.unity
+    guid: 8796acb7d66df434fb0c16235b9af4bb
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 8e21ba5e8912b3549be994245186fbbc
   m_configObjects: {}
