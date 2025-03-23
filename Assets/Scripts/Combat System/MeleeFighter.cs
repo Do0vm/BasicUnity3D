@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum AttackState { Idle, Windup, Impact, Cooldown}
+public enum AttackStates { Idle, Windup, Impact, Cooldown}
 
 public class MeleeFighter : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class MeleeFighter : MonoBehaviour
 
     }
 
-    public AttackState attackState;
+    public AttackStates AttackStates { get; private set; }
 
     bool doCombo;
     int comboCount = 0;
@@ -52,7 +52,7 @@ public class MeleeFighter : MonoBehaviour
         }
 
 
-        else if (attackState == AttackState.Impact || attackState == AttackState.Cooldown)
+        else if (AttackStates == AttackStates.Impact || AttackStates == AttackStates.Cooldown)
         {
 
             doCombo = true;
@@ -65,7 +65,7 @@ public class MeleeFighter : MonoBehaviour
     IEnumerator Attack()
     {
         InAction = true;
-        attackState = AttackState.Windup;
+        AttackStates = AttackStates.Windup;
 
 
 
@@ -86,29 +86,29 @@ public class MeleeFighter : MonoBehaviour
             float normalizedTime = timer / animState.length;
 
 
-            if (attackState == AttackState.Windup)
+            if (AttackStates == AttackStates.Windup)
             {
 
                 if (normalizedTime >= attacks[comboCount].ImpactStartTime)
                 {
 
-                    attackState = AttackState.Impact;
+                    AttackStates = AttackStates.Impact;
                     swordCollider.enabled =true;
                 }
 
             }
-            else if (attackState == AttackState.Impact)
+            else if (AttackStates == AttackStates.Impact)
             {
 
                 if(normalizedTime >= attacks[comboCount].ImpactEndTime)
                 {
 
-                    attackState = AttackState.Cooldown;
+                    AttackStates = AttackStates.Cooldown;
                     swordCollider.enabled = false;
                 }
 
             }
-            else if (attackState == AttackState.Cooldown)
+            else if (AttackStates == AttackStates.Cooldown)
             {
 
                 if (doCombo)
@@ -128,9 +128,12 @@ public class MeleeFighter : MonoBehaviour
         }
 
 
-        attackState = AttackState.Idle;
+        AttackStates = AttackStates.Idle;
         comboCount = 0;
         InAction = false;
+
+
+        animator.CrossFade("Locomotion", 0.2f);
 
     }
 

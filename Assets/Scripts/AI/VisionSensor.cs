@@ -6,6 +6,9 @@ public class VisionSensor : MonoBehaviour
 {
     [SerializeField] EnemyController enemy;
 
+    
+
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -15,7 +18,7 @@ public class VisionSensor : MonoBehaviour
         {
 
             enemy.TargetsInRange.Add( fighter );
-
+            EnemyManager.i.AddEnemyInRange(enemy);
         }
 
     }
@@ -29,6 +32,7 @@ public class VisionSensor : MonoBehaviour
         {
 
             enemy.TargetsInRange.Remove(fighter);
+            EnemyManager.i.RemoveEnemyInRange(enemy);
 
         }
 

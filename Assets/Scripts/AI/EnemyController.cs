@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public enum EnemyStates {Idle, Chase }
+public enum EnemyStates {Idle, Chase, Attack }
 
 public class EnemyController : MonoBehaviour
 {
@@ -16,20 +16,28 @@ public class EnemyController : MonoBehaviour
 
     public NavMeshAgent NavAgent { get; private set; }
     public Animator animator { get; private set; }
+    public MeleeFighter Fighter { get; private set; }
 
     private void Start()
     {
         NavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        Fighter = GetComponent<MeleeFighter>();
 
 
         stateDict = new Dictionary<EnemyStates, State<EnemyController>>();
 
         stateDict[EnemyStates.Idle] = GetComponent<IdleState>();
         stateDict[EnemyStates.Chase] = GetComponent<ChaseState>();
+        stateDict[EnemyStates.Attack] = GetComponent<AttackState>();
 
         StateMachine = new StateMachine<EnemyController>(this);
         StateMachine.ChangeState(stateDict[EnemyStates.Idle]);
+    }
+
+    public bool IsInState (EnemyStates state)
+    {
+        return StateMachine.CurrentState == stateDict[state];
     }
 
     public void ChangeState(EnemyStates state)
